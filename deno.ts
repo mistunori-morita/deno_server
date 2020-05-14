@@ -1,5 +1,8 @@
-let message: string;
+import { serve } from "https://deno.land/std@0.50.0/http/server.ts";
 
-message = "this Deno!!!";
+const server = serve({ port: 8000 });
 
-console.log(message);
+for await (const req of server) {
+  console.log("request!!");
+  req.respond({ body: "Message from Deno!!!" });
+}
